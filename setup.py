@@ -28,7 +28,7 @@ with open('requirements.txt', 'r') as f:
 setup(name='edx_sso_npoed',
       version='1.0',
       install_requires=requirements,
-      py_modules=['pipeline', 'backends.npoed'],
+      packages=['pipeline', 'backends'],
       zip_safe=False,
       # packages=get_packages(),
       )
