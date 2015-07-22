@@ -1,6 +1,6 @@
 import os
 from os.path import join, dirname, split
-# from distutils.core import setup
+#from distutils.core import setup
 from setuptools import setup
 
 
@@ -26,9 +26,8 @@ with open('requirements.txt', 'r') as f:
 
 
 setup(name='edx_sso_npoed',
-      version='2.0',
+      version='1.0',
       install_requires=requirements,
-      packages=['pipeline', 'backends'],
-      zip_safe=False,
+      py_modules=['pipeline', 'backends'],
       # packages=get_packages(),
       )
