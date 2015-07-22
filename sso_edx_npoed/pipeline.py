@@ -1,4 +1,5 @@
 import string  # pylint: disable-msg=deprecated-module
+import json
 
 from django.http import HttpResponseBadRequest
 from django.shortcuts import redirect
@@ -6,13 +7,14 @@ from django.utils.translation import ugettext as _
 from social.exceptions import AuthException
 from social.pipeline import partial
 
-from util.json_request import JsonResponse
 from student.cookies import set_logged_in_cookies
 from student.views import create_account_with_params
 import student
 
 from logging import getLogger
 
+
+logger = getLogger(__name__)
 
 # The following are various possible values for the AUTH_ENTRY_KEY.
 AUTH_ENTRY_LOGIN = 'login'
@@ -60,7 +62,11 @@ _AUTH_ENTRY_CHOICES = frozenset([
 _DEFAULT_RANDOM_PASSWORD_LENGTH = 12
 _PASSWORD_CHARSET = string.letters + string.digits
 
-logger = getLogger(__name__)
+class JsonResponse(HttpResponse):
+    def __init__(self, data=None):
+        super(JsonResponse, self).__init__(
+            json.dumps(data), mimetype='application/json; charset=utf-8'
+        )
 
 
 @partial.partial

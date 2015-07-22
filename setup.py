@@ -16,6 +16,5 @@ setup(
     url='https://github.com/dorosh/edx-sso-npoed',
     
     install_requires=requirements,
-    # py_modules=['pipeline', 'backends'],
     packages=find_packages(exclude=['tests']),
 )
